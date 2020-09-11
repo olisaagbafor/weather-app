@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+  <title>Weather-App</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+  <meta name="description" content="Weather App - GADS2020 practice project.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#6f6e6e">
+  <meta name="apple-mobile-web-app-title" content="Weather App (PWA)">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#6f6e6e">
+  <meta name="msapplication-TileColor" content="#6f6e6e">
+  <meta name="msapplication-config" content="browserconfig.xml" />
+  <meta name="theme-color" content="#6f6e6e">
+</head>
+<body>
+<div class="app-container">
+  <header>
+    <input type="text" autocomplete="off" class="search-city" placeholder="Search for a city..." />
+  </header>
+  <p style="text-align: center;"><span id="message" class="message"></span></p>
+
+  <main>
+    <section class="location">
+      <div class="city">Northampton, GB</div>
+      <div class="date">Thursday 10 January 2020</div>
+    </section>
+    <div class="current">
+      <div class="temperature">15 <span>&#x2103;</span></div>
+      <div>
+        <img class="icon" id="weather_icon" src="./img/cloud.svg" style="height: 130px" alt="Weather icon">
+      </div>
+      <div class="weather">Sunny</div>
+      <div class="hi-low">13&#x2103; / 16&#x2103;</div>
+    </div>
+  </main>
+
+  <aside class="forecast">
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather">Cloudy</div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Today</div>
+        <div class="daily__temp">20#</div>
+        <div class="daily__humidity">494</div>
+        <div class="daily__wind">2211</div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 1</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 2</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 3</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 4</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 5</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 6</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+    <div class="daily">
+      <div class="daily__icon">
+        <img class="small-icon" src="" alt="Weather icon">
+        <div class="daily__weather"></div>
+      </div>
+      <div class="daily__forecast">
+        <div class="daily__date">Day 7</div>
+        <div class="daily__temp"></div>
+        <div class="daily__humidity"></div>
+        <div class="daily__wind"></div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+<script src="./js/script.js"></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+              .then(reg => {
+                console.log('ServiceWorker registered: ', reg);
+              }).catch(err => {
+        console.error('Registration failed: ', err);
+      });
+    });
+  }
+</script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.20.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.20.0/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+</body>
+</html>
