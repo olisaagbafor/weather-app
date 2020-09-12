@@ -128,7 +128,7 @@ div.daily {
     align-items: center;
     height: auto;
     padding: 5px;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px 0 16px 0;
 }
 
 div.daily__icon {
@@ -162,7 +162,7 @@ div.daily__forecast {
 }
 
 div.daily__forecast > * {
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 div.daily__date {

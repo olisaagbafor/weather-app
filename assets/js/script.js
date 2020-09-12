@@ -13,7 +13,7 @@ function setQuery(event) {
             showMessage(`City name cannot be empty... `);
             return;
         }
-        getResults(search.value);
+        getResults(search.value.trim());
     }
 }
 
@@ -22,6 +22,7 @@ function showMessage(message) {
 }
 
 function getResults(query) {
+    showMessage(`Fetching weather forecast for <b style="color: #ff8e12">${query}...</b>`)
     fetch(`${api.baseurl}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then(weather => weather.json(),
             error => {
@@ -34,10 +35,13 @@ function getResults(query) {
 }
 
 function displayResults(weather) {
-    console.log(weather);
     if (weather.name === undefined) {
-        showMessage(`${search.value} could not be found in the Open Weather Map API database, Please try another.`)
+        showMessage(`<b style="color: #ff8e12">'${search.value}'</b> could not be found in the Open Weather Map API database, Please try another.`);
+        search.value = "";
+        return;
     }
+    showMessage(`Showing result for <b style="color: #ff8e12">'${search.value}'</b> Weather forecast.`);
+    search.value = "";
     document.querySelector('.location .city').innerText = `${weather.name}, ${weather.sys.country}`;
 
     let now = new Date();
@@ -287,8 +291,10 @@ function displayLocalStorageToScreen() {
 
 window.onload = function () {
     if (localStorage.getItem('city') === null) {
-        showMessage(`Enter a city to see the weather forecast...`);
+        showMessage(`Enter a city to get the weather forecast...`);
     }else {
+        showMessage(`Fetching recently searched weather forecast...`);
         displayLocalStorageToScreen();
+        showMessage(`Showing result for <b style="color: #ff8e12">'${localStorage.getItem('city')}'</b> Weather forecast.`);
     }
 }
